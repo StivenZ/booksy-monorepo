@@ -1,0 +1,52 @@
+{
+  "root": "apps/booksy-api",
+  "sourceRoot": "apps/booksy-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/booksy-api",
+        "main": "apps/booksy-api/src/main.ts",
+        "tsConfig": "apps/booksy-api/tsconfig.app.json",
+        "assets": ["apps/booksy-api/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/booksy-api/src/environments/environment.ts",
+              "with": "apps/booksy-api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "booksy-api:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/booksy-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/booksy-api"],
+      "options": {
+        "jestConfig": "apps/booksy-api/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "booksy": "apps/booksy",
+    "booksy-api": "apps/booksy-api",
     "booksy-e2e": "apps/booksy-e2e"
   }
 }
